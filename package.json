@@ -1,0 +1,30 @@
+{
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"generate:api": "orval"
+	},
+	"dependencies": {
+		"@preact/signals": "^2.9.1",
+		"@tanstack/query-core": "^5.101.0",
+		"@tanstack/react-query": "^5.101.0",
+		"axios": "^1.17.0",
+		"preact": "^10.26.9",
+		"preact-iso": "^2.12.0",
+		"sass": "^1.100.0"
+	},
+	"devDependencies": {
+		"@preact/preset-vite": "^2.10.2",
+		"eslint": "^9.39.4",
+		"eslint-config-preact": "^2.0.0",
+		"orval": "^7.13.2",
+		"typescript": "^6.0.3",
+		"vite": "^7.0.4"
+	},
+	"eslintConfig": {
+		"extends": "preact"
+	}
+}
