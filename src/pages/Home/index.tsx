@@ -1,37 +1,31 @@
-import preactLogo from '../../assets/preact.svg';
 import './style.css';
 
 export function Home() {
 	return (
 		<div class="home">
-			<a href="https://preactjs.com" target="_blank">
-				<img src={preactLogo} alt="Preact logo" height="160" width="160" />
-			</a>
-			<h1>Get Started building Vite-powered Preact Apps </h1>
+			<h1>Welcome to Paw Cloud Solution</h1>
+			<p style={{ textAlign: 'center', marginBottom: '2rem', color: 'rgba(255,255,255,0.7)' }}>
+				The ultimate platform for managing dog breeding organizations globally.
+			</p>
 			<section>
 				<Resource
-					title="Learn Preact"
-					description="If you're new to Preact, try the interactive tutorial to learn important concepts"
-					href="https://preactjs.com/tutorial"
+					title="Create International Organization"
+					description="Start here by registering a top-level international canine organization."
+					href="/apply/international"
 				/>
 				<Resource
-					title="Differences to React"
-					description="If you're coming from React, you may want to check out our docs to see where Preact differs"
-					href="https://preactjs.com/guide/v10/differences-to-react"
-				/>
-				<Resource
-					title="Learn Vite"
-					description="To learn more about Vite and how you can customize it to fit your needs, take a look at their excellent documentation"
-					href="https://vitejs.dev"
+					title="Member Login"
+					description="Already have an account? Log in to your dashboard."
+					href="/auth/login"
 				/>
 			</section>
 		</div>
 	);
 }
 
-function Resource(props) {
+function Resource(props: { title: string; description: string; href: string }) {
 	return (
-		<a href={props.href} target="_blank" class="resource">
+		<a href={props.href} class="resource">
 			<h2>{props.title}</h2>
 			<p>{props.description}</p>
 		</a>

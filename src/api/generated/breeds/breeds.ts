@@ -192,7 +192,7 @@ export const useBreedControllerCreateBreed = <TError = AxiosError<unknown>,
       return useMutation(mutationOptions, queryClient);
     }
     /**
- * @summary Submit a new breed application (Club Employee only)
+ * @summary Submit an application to create a new breed
  */
 export const breedControllerSubmitApplication = (
     submitBreedApplicationDtoHttp: SubmitBreedApplicationDtoHttp, options?: AxiosRequestConfig
@@ -237,7 +237,7 @@ const {mutation: mutationOptions, axios: axiosOptions} = options ?
     export type BreedControllerSubmitApplicationMutationError = AxiosError<unknown>
 
     /**
- * @summary Submit a new breed application (Club Employee only)
+ * @summary Submit an application to create a new breed
  */
 export const useBreedControllerSubmitApplication = <TError = AxiosError<unknown>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof breedControllerSubmitApplication>>, TError,{data: SubmitBreedApplicationDtoHttp}, TContext>, axios?: AxiosRequestConfig}

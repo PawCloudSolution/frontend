@@ -129,7 +129,7 @@ export function useClubControllerGetClubs<TData = Awaited<ReturnType<typeof club
 
 
 /**
- * @summary Create a local club under an HQ (HQ President or SuperAdmin)
+ * @summary Create a new Club (Branch) under a Headquarter
  */
 export const clubControllerCreateClub = (
     hqId: string,
@@ -175,7 +175,7 @@ const {mutation: mutationOptions, axios: axiosOptions} = options ?
     export type ClubControllerCreateClubMutationError = AxiosError<unknown>
 
     /**
- * @summary Create a local club under an HQ (HQ President or SuperAdmin)
+ * @summary Create a new Club (Branch) under a Headquarter
  */
 export const useClubControllerCreateClub = <TError = AxiosError<unknown>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof clubControllerCreateClub>>, TError,{hqId: string;data: CreateClubDtoHttp}, TContext>, axios?: AxiosRequestConfig}

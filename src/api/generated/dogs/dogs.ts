@@ -41,7 +41,7 @@ import type {
 
 
 /**
- * @summary Register a dog (Club Employee only)
+ * @summary Register a new dog (creates a pending registration)
  */
 export const dogControllerRegisterDog = (
     registerDogDtoHttp: RegisterDogDtoHttp, options?: AxiosRequestConfig
@@ -86,7 +86,7 @@ const {mutation: mutationOptions, axios: axiosOptions} = options ?
     export type DogControllerRegisterDogMutationError = AxiosError<unknown>
 
     /**
- * @summary Register a dog (Club Employee only)
+ * @summary Register a new dog (creates a pending registration)
  */
 export const useDogControllerRegisterDog = <TError = AxiosError<unknown>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof dogControllerRegisterDog>>, TError,{data: RegisterDogDtoHttp}, TContext>, axios?: AxiosRequestConfig}

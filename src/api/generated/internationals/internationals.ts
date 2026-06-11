@@ -41,6 +41,95 @@ import type {
 
 
 /**
+ * @summary List all pending International applications (SuperAdmin only)
+ */
+export const internationalControllerGetPendingApplications = (
+     options?: AxiosRequestConfig
+ ): Promise<AxiosResponse<void>> => {
+    
+    
+    return axios.default.get(
+      `/api/v1/internationals/applications/pending`,options
+    );
+  }
+
+
+
+
+export const getInternationalControllerGetPendingApplicationsQueryKey = () => {
+    return [
+    `/api/v1/internationals/applications/pending`
+    ] as const;
+    }
+
+    
+export const getInternationalControllerGetPendingApplicationsQueryOptions = <TData = Awaited<ReturnType<typeof internationalControllerGetPendingApplications>>, TError = AxiosError<unknown>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof internationalControllerGetPendingApplications>>, TError, TData>>, axios?: AxiosRequestConfig}
+) => {
+
+const {query: queryOptions, axios: axiosOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getInternationalControllerGetPendingApplicationsQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof internationalControllerGetPendingApplications>>> = ({ signal }) => internationalControllerGetPendingApplications({ signal, ...axiosOptions });
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof internationalControllerGetPendingApplications>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type InternationalControllerGetPendingApplicationsQueryResult = NonNullable<Awaited<ReturnType<typeof internationalControllerGetPendingApplications>>>
+export type InternationalControllerGetPendingApplicationsQueryError = AxiosError<unknown>
+
+
+export function useInternationalControllerGetPendingApplications<TData = Awaited<ReturnType<typeof internationalControllerGetPendingApplications>>, TError = AxiosError<unknown>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof internationalControllerGetPendingApplications>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof internationalControllerGetPendingApplications>>,
+          TError,
+          Awaited<ReturnType<typeof internationalControllerGetPendingApplications>>
+        > , 'initialData'
+      >, axios?: AxiosRequestConfig}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useInternationalControllerGetPendingApplications<TData = Awaited<ReturnType<typeof internationalControllerGetPendingApplications>>, TError = AxiosError<unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof internationalControllerGetPendingApplications>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof internationalControllerGetPendingApplications>>,
+          TError,
+          Awaited<ReturnType<typeof internationalControllerGetPendingApplications>>
+        > , 'initialData'
+      >, axios?: AxiosRequestConfig}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useInternationalControllerGetPendingApplications<TData = Awaited<ReturnType<typeof internationalControllerGetPendingApplications>>, TError = AxiosError<unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof internationalControllerGetPendingApplications>>, TError, TData>>, axios?: AxiosRequestConfig}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary List all pending International applications (SuperAdmin only)
+ */
+
+export function useInternationalControllerGetPendingApplications<TData = Awaited<ReturnType<typeof internationalControllerGetPendingApplications>>, TError = AxiosError<unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof internationalControllerGetPendingApplications>>, TError, TData>>, axios?: AxiosRequestConfig}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getInternationalControllerGetPendingApplicationsQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+/**
  * @summary List all active International organizations
  */
 export const internationalControllerGetInternationals = (
@@ -191,7 +280,7 @@ export const useInternationalControllerSubmitOrg = <TError = AxiosError<void>,
       return useMutation(mutationOptions, queryClient);
     }
     /**
- * @summary Approve a submitted International application (SuperAdmin only)
+ * @summary Approve a submitted application (SuperAdmin only)
  */
 export const internationalControllerApproveOrg = (
     approveInternationalApplicationDto: ApproveInternationalApplicationDto, options?: AxiosRequestConfig
@@ -236,7 +325,7 @@ const {mutation: mutationOptions, axios: axiosOptions} = options ?
     export type InternationalControllerApproveOrgMutationError = AxiosError<void | void>
 
     /**
- * @summary Approve a submitted International application (SuperAdmin only)
+ * @summary Approve a submitted application (SuperAdmin only)
  */
 export const useInternationalControllerApproveOrg = <TError = AxiosError<void | void>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof internationalControllerApproveOrg>>, TError,{data: ApproveInternationalApplicationDto}, TContext>, axios?: AxiosRequestConfig}

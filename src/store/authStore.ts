@@ -1,11 +1,12 @@
 import { signal, computed } from '@preact/signals';
 
-export type UserRole = 
-  | 'SuperAdmin' 
-  | 'InternationalPresident' 
-  | 'HQPresident' 
-  | 'ClubEmployee' 
-  | 'PendingEmployee';
+export type UserRole =
+  | 'superAdmin'
+  | 'internationalPresident'
+  | 'nationalPresident'
+  | 'branchPresident'
+  | 'employee'
+  | 'member';
 
 export interface User {
   id: string;

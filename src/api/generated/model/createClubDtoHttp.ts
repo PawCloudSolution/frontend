@@ -13,4 +13,10 @@ export interface CreateClubDtoHttp {
   taxNumber?: string | null;
   /** @nullable */
   registrationNumber?: string | null;
+  presidentName: string;
+  presidentSurname: string;
+  presidentEmail: string;
+  /** @nullable */
+  presidentPhone?: string | null;
+  presidentPasswordPlain: string;
 }

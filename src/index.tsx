@@ -7,6 +7,9 @@ import { Home } from './pages/Home/index.jsx';
 import { NotFound } from './pages/_404.jsx';
 import { ProtectedRoute } from './components/ProtectedRoute.jsx';
 import { Login } from './features/auth/Login.jsx';
+import { InternationalApplication } from './pages/Onboarding/InternationalApplication.jsx';
+import { DashboardOverview } from './pages/Dashboard/Overview.jsx';
+import { SuperAdminDashboard } from './pages/Dashboard/SuperAdminDashboard.jsx';
 import { authState, checkAuth } from './store/authStore';
 import { useEffect } from 'preact/hooks';
 import './api/axios'; // Initialize global axios defaults
@@ -33,8 +36,10 @@ export function App() {
 					<Router>
 						<Route path="/" component={Home} />
 						<Route path="/auth/login" component={Login} />
-						<ProtectedRoute path="/dashboard" component={() => <div>Dashboard placeholder</div>} />
-						<ProtectedRoute path="/organizations" component={() => <div>Organizations placeholder</div>} allowedRoles={['SuperAdmin', 'InternationalPresident', 'HQPresident']} />
+						<Route path="/apply/international" component={InternationalApplication} />
+						<ProtectedRoute path="/dashboard" component={DashboardOverview} />
+						<ProtectedRoute path="/dashboard/superadmin" component={SuperAdminDashboard} allowedRoles={['superAdmin']} />
+						<ProtectedRoute path="/organizations" component={() => <div>Organizations placeholder</div>} allowedRoles={['superAdmin', 'internationalPresident', 'nationalPresident']} />
 						<Route default component={NotFound} />
 					</Router>
 				</main>
@@ -43,4 +48,4 @@ export function App() {
 	);
 }
 
-render(<App />, document.getElementById('app'));
+render(<App />, document.getElementById('app') as HTMLElement);

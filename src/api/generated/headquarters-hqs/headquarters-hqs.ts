@@ -41,6 +41,95 @@ import type {
 
 
 /**
+ * @summary List all pending HQ applications for an International organization
+ */
+export const hqControllerGetPendingApplications = (
+    intId: string, options?: AxiosRequestConfig
+ ): Promise<AxiosResponse<void>> => {
+    
+    
+    return axios.default.get(
+      `/api/v1/internationals/${intId}/hqs/applications/pending`,options
+    );
+  }
+
+
+
+
+export const getHqControllerGetPendingApplicationsQueryKey = (intId?: string,) => {
+    return [
+    `/api/v1/internationals/${intId}/hqs/applications/pending`
+    ] as const;
+    }
+
+    
+export const getHqControllerGetPendingApplicationsQueryOptions = <TData = Awaited<ReturnType<typeof hqControllerGetPendingApplications>>, TError = AxiosError<unknown>>(intId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof hqControllerGetPendingApplications>>, TError, TData>>, axios?: AxiosRequestConfig}
+) => {
+
+const {query: queryOptions, axios: axiosOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getHqControllerGetPendingApplicationsQueryKey(intId);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof hqControllerGetPendingApplications>>> = ({ signal }) => hqControllerGetPendingApplications(intId, { signal, ...axiosOptions });
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(intId), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof hqControllerGetPendingApplications>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type HqControllerGetPendingApplicationsQueryResult = NonNullable<Awaited<ReturnType<typeof hqControllerGetPendingApplications>>>
+export type HqControllerGetPendingApplicationsQueryError = AxiosError<unknown>
+
+
+export function useHqControllerGetPendingApplications<TData = Awaited<ReturnType<typeof hqControllerGetPendingApplications>>, TError = AxiosError<unknown>>(
+ intId: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof hqControllerGetPendingApplications>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof hqControllerGetPendingApplications>>,
+          TError,
+          Awaited<ReturnType<typeof hqControllerGetPendingApplications>>
+        > , 'initialData'
+      >, axios?: AxiosRequestConfig}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useHqControllerGetPendingApplications<TData = Awaited<ReturnType<typeof hqControllerGetPendingApplications>>, TError = AxiosError<unknown>>(
+ intId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof hqControllerGetPendingApplications>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof hqControllerGetPendingApplications>>,
+          TError,
+          Awaited<ReturnType<typeof hqControllerGetPendingApplications>>
+        > , 'initialData'
+      >, axios?: AxiosRequestConfig}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useHqControllerGetPendingApplications<TData = Awaited<ReturnType<typeof hqControllerGetPendingApplications>>, TError = AxiosError<unknown>>(
+ intId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof hqControllerGetPendingApplications>>, TError, TData>>, axios?: AxiosRequestConfig}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary List all pending HQ applications for an International organization
+ */
+
+export function useHqControllerGetPendingApplications<TData = Awaited<ReturnType<typeof hqControllerGetPendingApplications>>, TError = AxiosError<unknown>>(
+ intId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof hqControllerGetPendingApplications>>, TError, TData>>, axios?: AxiosRequestConfig}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getHqControllerGetPendingApplicationsQueryOptions(intId,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+/**
  * @summary List all active HQs under a specific International organization
  */
 export const hqControllerGetHqs = (
@@ -130,7 +219,7 @@ export function useHqControllerGetHqs<TData = Awaited<ReturnType<typeof hqContro
 
 
 /**
- * @summary Submit an application for a new Headquarter
+ * @summary Submit an application for a new HQ
  */
 export const hqControllerSubmitOrg = (
     intId: string,
@@ -176,7 +265,7 @@ const {mutation: mutationOptions, axios: axiosOptions} = options ?
     export type HqControllerSubmitOrgMutationError = AxiosError<void>
 
     /**
- * @summary Submit an application for a new Headquarter
+ * @summary Submit an application for a new HQ
  */
 export const useHqControllerSubmitOrg = <TError = AxiosError<void>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof hqControllerSubmitOrg>>, TError,{intId: string;data: SubmitHqApplicationDto}, TContext>, axios?: AxiosRequestConfig}
@@ -192,7 +281,7 @@ export const useHqControllerSubmitOrg = <TError = AxiosError<void>,
       return useMutation(mutationOptions, queryClient);
     }
     /**
- * @summary Approve a submitted HQ application (SuperAdmin only)
+ * @summary Approve a submitted HQ application
  */
 export const hqControllerApproveOrg = (
     intId: string,
@@ -238,7 +327,7 @@ const {mutation: mutationOptions, axios: axiosOptions} = options ?
     export type HqControllerApproveOrgMutationError = AxiosError<void | void>
 
     /**
- * @summary Approve a submitted HQ application (SuperAdmin only)
+ * @summary Approve a submitted HQ application
  */
 export const useHqControllerApproveOrg = <TError = AxiosError<void | void>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof hqControllerApproveOrg>>, TError,{intId: string;data: ApproveHqApplicationDto}, TContext>, axios?: AxiosRequestConfig}
