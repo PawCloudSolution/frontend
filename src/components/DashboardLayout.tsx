@@ -44,6 +44,9 @@ export function DashboardLayout({ children, title = 'Dashboard' }: Props) {
               My Organization
             </a>
           )}
+          <a href="/dashboard/breeds" class={window.location.pathname.includes('/breeds') ? styles.active : ''}>
+            Breeds
+          </a>
         </nav>
 
         <button class={styles.logoutBtn} onClick={handleLogout} disabled={logoutMutation.isPending}>

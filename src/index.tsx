@@ -10,6 +10,7 @@ import { Login } from './features/auth/Login.jsx';
 import { InternationalApplication } from './pages/Onboarding/InternationalApplication.jsx';
 import { DashboardOverview } from './pages/Dashboard/Overview.jsx';
 import { SuperAdminDashboard } from './pages/Dashboard/SuperAdminDashboard.jsx';
+import { BreedsManagement } from './features/breeds/BreedsManagement.jsx';
 import { authState, checkAuth } from './store/authStore';
 import { useEffect } from 'preact/hooks';
 import './api/axios'; // Initialize global axios defaults
@@ -39,6 +40,7 @@ export function App() {
 						<Route path="/apply/international" component={InternationalApplication} />
 						<ProtectedRoute path="/dashboard" component={DashboardOverview} />
 						<ProtectedRoute path="/dashboard/superadmin" component={SuperAdminDashboard} allowedRoles={['superAdmin']} />
+						<ProtectedRoute path="/dashboard/breeds" component={BreedsManagement} />
 						<ProtectedRoute path="/organizations" component={() => <div>Organizations placeholder</div>} allowedRoles={['superAdmin', 'internationalPresident', 'nationalPresident']} />
 						<Route default component={NotFound} />
 					</Router>
